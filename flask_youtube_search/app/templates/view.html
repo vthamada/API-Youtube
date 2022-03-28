@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Vídeo Dados</title>
+
+    <!-- Bootstrap core CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='album.css') }}" rel="stylesheet">
+  </head>
+  <body>
+
+<main role="main">
+    
+    <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Vídeo Dados</h1>
+        </div>
+      </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+            <div class="container">
+                <h2>{{video.General.Title}}</h2>
+                <pre class="video_json">
+                    <form name="edit" action="/save_edit/" method="post">
+                   
+                    <h3 style="color: red;">Vídeo Dados:</h3>  
+                          "id": {{video.id}},
+                          "url": {{video.url}},
+                          "thumbnail": {{video.thumbnail}},
+                          "publishedAt": {{video.publishedAt}},
+                          "title": {{video.General.Title}},
+                          "description": {{video.General.Description}},
+                          "channelTitle": {{video.channelTitle}},
+                          "categoryId": {{video.categoryId}},
+                          "duration": {{video.duration}} minutes,
+                          "licensedContent": {{video.licensedContent}},
+                          "viewCount": {{video.viewCount}} views,
+                          "likeCount": {{video.likeCount}} likes,
+                          "dislikeCount": {{video.dislikeCount}} dislikes,
+                          "favoriteCount": {{video.favoriteCount}} favorites,
+                          "commentCount": {{video.commentCount}} comments                      
+                                     
+                                      
+                    <h3 style="color: red;">IEEE LOM:</h3>         
+                          "General":{
+                                "Identifier":{{video.General.Identifier}},
+                                "Title":{{video.General.Title}},
+                                "Catalog_Entry":{
+                                  "Catalogue": {{video.General.Catalog_Entry.Catalogue}}, 
+                                  "Entry": {{video.General.Catalog_Entry.Entry}}
+                              },
+                              "Language": {{video.General.Language}},
+                              "Description":{{video.General.Description}},
+                              "Keywords": {{video.General.Keywords}},
+                              "Coverage": {{video.General.Coverage}},
+                              "Structure": {{video.General.Structure}},
+                              "Aggregation_Level": {{video.General.Aggregation_Level}}
+                          },
+                          "Life_Cycle":{
+                              "Version": {{video.Life_Cycle.Version}},
+                              "Status": {{video.Life_Cycle.Status}},
+                              "Contribute":{
+                                  "Role": {{video.Life_Cycle.Contribute.Role}},
+                                  "Entity": {{video.Life_Cycle.Contribute.Entity}},
+                                  "Date": {{video.Life_Cycle.Contribute.Date}}
+                              }
+                          },
+                          "Meta_metadata":{
+                              "Identifier": {{video.Meta_metadata.Identifier}},
+                              "Catalog":{
+                                  "Catalog": {{video.Meta_metadata.Catalog.Catalog}},
+                                  "Entry": {{video.Meta_metadata.Catalog.Entry}} 
+                              },
+                              "Contribute":{
+                                  "Role": {{video.Meta_metadata.Contribute.Role}},
+                                  "Entity": {{video.Meta_metadata.Contribute.Entity}},
+                                  "Date": {{video.Meta_metadata.Contribute.Date}}
+                              },
+                              "Metadata_Scheme": {{video.Meta_metadata.Metadata_Scheme}},
+                              "Language": {{video.Meta_metadata.Language}}
+                          },
+                          "Technical":{
+                              "Format": {{video.Technical.Format}},
+                              "Size": {{video.Technical.Size}},
+                              "Location": {{video.Technical.Location}},
+                              "Requirements":{
+                                  "Type": {{video.Technical.Requirements.Type}},
+                                  "Name": {{video.Technical.Requirements.Name}},
+                                  "Min_version": {{video.Technical.Requirements.Min_version}},
+                                  "Max_version": {{video.Technical.Requirements.Max_version}}
+                              },
+                              "Installation_Remarks": {{video.Technical.Installation_Remarks}},
+                              "Other_platform_requirements": {{video.Technical.Other_platform_requirements}},
+                              "Duration": {{video.duration}} minutos
+                          },
+                          "Educational":{
+                              "Interactivity_Type": {{video.Educational.Interactivity_Type}},
+                              "Learning_Resource_Type": {{video.Educational.Learning_Resource_Type}},
+                              "Interactivity_Level": {{video.Educational.Interactivity_Level}},
+                              "Semantic_Density": {{video.Educational.Semantic_Density}},
+                              "Intended_end_user_role": {{video.Educational.Intended_end_user_role}},
+                              "Context": {{video.Educational.Context}},
+                              "Typical_Age_Range": {{video.Educational.Typical_Age_Range}},
+                              "Difficulty": {{video.Educational.Difficulty}},
+                              "Typical_learning_Time": {{video.Educational.Typical_learning_Time}},
+                              "Description": {{video.Educational.Description}},
+                              "Language": {{video.Educational.Language}}
+                          },
+                          "Rights":{
+                              "Cost": {{video.Rights.Cost}},
+                              "Copyright_and_other_restrictions": {{video.Rights.Copyright_and_other_restrictions}},
+                              "Description": {{video.Rights.Description}}, 
+                          },
+                          "Relation":{
+                              "Kind": {{video.Relation.Kind}},
+                              "Resource":{
+                                  "Identifier": {{video.Relation.Resource.Identifier}},
+                                  "Description": {{video.Relation.Resource.Description}},
+                                  "Catalog_entry": {{video.Relation.Resource.Catalog_entry}} 
+                              }
+                          },
+                          "Annotation":{
+                              "Person": {{video.Annotation.Person}},
+                              "Date": {{video.Annotation.Date}},
+                              "Description": {{video.Annotation.Description}}
+                          },
+                          "Classification":{
+                              "Purpose": {{video.Classification.Purpose}},
+                              "Taxon_path":{
+                                  "Source": {{video.Classification.Taxon_path.Source}},
+                                  "Taxon":{
+                                      "ID": {{video.Classification.Taxon_path.Taxon.ID}},
+                                      "Entry": {{video.Classification.Taxon_path.Taxon.Entry}} 
+                                  }
+                              },
+                              "Description": {{video.Classification.Description}},
+                              "Keywords": {{video.Classification.Keywords}}
+                          }
+                          
+
+                    <div class="btn-group">
+                        <a href="javascript:void(0)" onClick="history.go(-1); return false;" class="btn btn-secondary">Voltar</a> 
+                        <a type="button" href="/editar_video?id={{ video.id }}" class="btn btn-success my-2 my-sm-0" style="margin-left: 10px;">Editar</a>
+                    </div>
+                    </form>              
+                </pre>
+            </div>
+                <br><br>
+</body>
+</html>

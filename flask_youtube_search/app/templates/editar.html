@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Editar Vídeo</title>
+
+    <!-- Bootstrap core CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='album.css') }}" rel="stylesheet">
+  </head>
+  <body>
+
+<main role="main">
+    
+    <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Editar Vídeo</h1>
+        </div>
+      </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+            <div class="container">
+                <h2>{{video.General.Title}}</h2>
+                <pre class="video_json">
+                    <form name="edit" action="/save_edit/" method="post">
+                 
+                        <h3 style="color: red;">Vídeo Dados:</h3> 
+                                "id": {{video.id}},
+                                "url": {{video.url}},
+                                "thumbnail": {{video.thumbnail}},
+                                "publishedAt": {{video.publishedAt}},
+                                "title": {{video.General.title}},
+                                "description": {{video.General.Description}},
+                                "channelTitle": {{video.channelTitle}},
+                                "categoryId": {{video.categoryId}},
+                                "duration": {{video.duration}} minutes,
+                                "licensedContent": {{video.licensedContent}},
+                                "viewCount": {{video.viewCount}} views,
+                                "likeCount": {{video.likeCount}} likes,
+                                "dislikeCount": {{video.dislikeCount}} dislikes,
+                                "favoriteCount": {{video.favoriteCount}} favorites,
+                                "commentCount": {{video.commentCount}} comments
+                            
+                            
+                        <h3 style="color: red;">IEEE LOM:</h3>
+                          "General":{
+                                "Identifier": <input type="text" name="video_id" value="{{video.General.Identifier}}" readonly="readonly">,
+                                "Title": <textarea name="title_edit" rows="1" cols="70">{{video.General.Title}}</textarea>,
+                                "Catalog_Entry":{
+                                  "Catalogue": <textarea name="catalogue_edit" rows="1" cols="10">{{video.General.Catalog_Entry.Catalogue}}</textarea>, 
+                                  "Entry": <textarea name="entry_edit" rows="1" cols="10">{{video.General.Catalog_Entry.Entry}}</textarea>
+                              },
+                              "Language": <textarea name="language_edit" rows="1" cols="10">{{video.General.Language}}</textarea>, 
+                              "Description": <textarea name="description_edit" rows="5" cols="90">{{video.General.Description}}</textarea>,
+                              "Keywords": <textarea name="keywords_edit" rows="1" cols="10">{{video.General.Keywords}}</textarea>,
+                              "Coverage": <textarea name="coverage_edit" rows="1" cols="10">{{video.General.Coverage}}</textarea>,
+                              "Structure": <textarea name="structure_edit" rows="1" cols="20">{{video.General.Structure}}</textarea>,
+                              "Aggregation_Level": <textarea name="aggregation_edit" rows="1" cols="10">{{video.General.Aggregation_Level}}</textarea> 
+                          },
+                          "Life_Cycle":{
+                              "Version": <textarea name="version_edit" rows="1" cols="10">{{video.Life_Cycle.Version}}</textarea>,
+                              "Status": <textarea name="status_edit" rows="1" cols="10">{{video.Life_Cycle.Status}}</textarea>,
+                              "Contribute":{
+                                  "Role": <textarea name="role_edit" rows="1" cols="10">{{video.Life_Cycle.Contribute.Role}}</textarea>,
+                                  "Entity": <textarea name="entity_edit" rows="1" cols="10">{{video.Life_Cycle.Contribute.Entity}}</textarea>,
+                                  "Date": <textarea name="date_edit" rows="1" cols="20">{{video.Life_Cycle.Contribute.Date}}</textarea>
+                              }
+                          },
+                          "Meta_metadata":{
+                              "Identifier": <textarea name="meta_id_edit" rows="1" cols="15">{{video.Meta_metadata.Identifier}}</textarea>,
+                              "Catalog":{
+                                  "Catalog": <textarea name="meta_catalog_edit" rows="1" cols="10">{{video.Meta_metadata.Catalog.Catalog}}</textarea>,
+                                  "Entry": <textarea name="meta_entry_edit" rows="1" cols="10">{{video.Meta_metadata.Catalog.Entry}}</textarea>  
+                              },
+                              "Contribute":{
+                                  "Role": <textarea name="contribute_role_edit" rows="1" cols="10">{{video.Meta_metadata.Contribute.Role}}</textarea>,
+                                  "Entity": <textarea name="contribute_entity_edit" rows="1" cols="10">{{video.Meta_metadata.Contribute.Entity}}</textarea>,
+                                  "Date": <textarea name="contribute_date_edit" rows="1" cols="20">{{video.Meta_metadata.Contribute.Date}}</textarea> 
+                              },
+                              "Metadata_Scheme": <textarea name="scheme_edit" rows="1" cols="10">{{video.Meta_metadata.Metadata_Scheme}}</textarea>,
+                              "Language": <textarea name="meta_language_edit" rows="1" cols="10">{{video.Meta_metadata.Language}}</textarea> 
+                          },
+                          "Technical":{
+                              "Format": <textarea name="technical_format_edit" rows="1" cols="10">{{video.Technical.Format}}</textarea>,
+                              "Size": <textarea name="technical_size_edit" rows="1" cols="10">{{video.Technical.Size}}</textarea>,
+                              "Location": <textarea name="technical_location_edit" rows="1" cols="10">{{video.Technical.Location}}</textarea>,
+                              "Requirements":{
+                                  "Type": <textarea name="requirements_type_edit" rows="1" cols="10">{{video.Technical.Requirements.Type}}</textarea>,
+                                  "Name": <textarea name="requirements_name_edit" rows="1" cols="10">{{video.Technical.Requirements.Name}}</textarea>,
+                                  "Min_version": <textarea name="requirements_min_edit" rows="1" cols="10">{{video.Technical.Requirements.Min_version}}</textarea>,
+                                  "Max_version": <textarea name="requirements_max_edit" rows="1" cols="10">{{video.Technical.Requirements.Max_version}}</textarea> 
+                              },
+                              "Installation_Remarks": <textarea name="remarks_edit" rows="1" cols="10">{{video.Technical.Installation_Remarks}}</textarea>,
+                              "Other_platform_requirements": <textarea name="other_edit" rows="1" cols="10">{{video.Technical.Other_platform_requirements}}</textarea>,
+                              "Duration": <textarea name="duration_edit" rows="1" cols="10">{{video.duration}}</textarea> minutos
+                          },
+                          "Educational":{
+                              "Interactivity_Type": <textarea name="interactivity_type_edit" rows="1" cols="15">{{video.Educational.Interactivity_Type}}</textarea>,
+                              "Learning_Resource_Type":  <textarea name="resource_type_edit" rows="1" cols="10">{{video.Educational.Learning_Resource_Type}}</textarea>,
+                              "Interactivity_Level": <textarea name="interactivity_level_edit" rows="1" cols="10">{{video.Educational.Interactivity_Level}}</textarea>,
+                              "Semantic_Density": <textarea name="semantic_density_edit" rows="1" cols="10">{{video.Educational.Semantic_Density}}</textarea>,
+                              "Intended_end_user_role": <textarea name="user_role_edit" rows="1" cols="10">{{video.Educational.Intended_end_user_role}}</textarea>,
+                              "Context": <textarea name="context_edit" rows="1" cols="10">{{video.Educational.Context}}</textarea>,
+                              "Typical_Age_Range": <textarea name="age_range_edit" rows="1" cols="10">{{video.Educational.Typical_Age_Range}}</textarea>,
+                              "Difficulty": <textarea name="difficulty_edit" rows="1" cols="10">{{video.Educational.Difficulty}}</textarea>,
+                              "Typical_learning_Time": <textarea name="learning_time_edit" rows="1" cols="10">{{video.Educational.Typical_learning_Time}}</textarea>,
+                              "Description": <textarea name="educational_description_edit" rows="1" cols="10">{{video.Educational.Description}}</textarea>,
+                              "Language": <textarea name="educational_language_edit" rows="1" cols="10">{{video.Educational.Language}}</textarea> 
+                          },
+                          "Rights":{
+                              "Cost": <textarea name="cost_edit" rows="1" cols="10">{{video.Rights.Cost}}</textarea>,
+                              "Copyright_and_other_restrictions": <textarea name="copyright_edit" rows="1" cols="10">{{video.Rights.Copyright_and_other_restrictions}}</textarea>,
+                              "Description": <textarea name="rights_description_edit" rows="1" cols="10">{{video.Rights.Description}}</textarea>, 
+                          },
+                          "Relation":{
+                              "Kind": <textarea name="kind_edit" rows="1" cols="10">{{video.Relation.Kind}}</textarea>,
+                              "Resource":{
+                                  "Identifier": <textarea name="relation_id_edit" rows="1" cols="10">{{video.Relation.Resource.Identifier}}</textarea>,
+                                  "Description": <textarea name="relation_description_edit" rows="1" cols="10">{{video.Relation.Resource.Description}}</textarea>,
+                                  "Catalog_entry": <textarea name="relation_catalog_edit" rows="1" cols="10">{{video.Relation.Resource.Catalog_entry}}</textarea> 
+                              }
+                          },
+                          "Annotation":{
+                              "Person": <textarea name="annotation_person_edit" rows="1" cols="10">{{video.Annotation.Person}}</textarea>,
+                              "Date": <textarea name="annotation_date_edit" rows="1" cols="20">{{video.Annotation.Date}}</textarea>,
+                              "Description": <textarea name="annotation_description_edit" rows="1" cols="10">{{video.Annotation.Description}}</textarea> 
+                          },
+                          "Classification":{
+                              "Purpose": <textarea name="purpose_edit" rows="1" cols="10">{{video.Classification.Purpose}}</textarea>,
+                              "Taxon_path":{
+                                  "Source": <textarea name="source_edit" rows="1" cols="10">{{video.Classification.Taxon_path.Source}}</textarea>,
+                                  "Taxon":{
+                                      "ID": <textarea name="taxon_id_edit" rows="1" cols="15">{{video.Classification.Taxon_path.Taxon.ID}}</textarea>,
+                                      "Entry": <textarea name="taxon_entry_edit" rows="1" cols="45">{{video.Classification.Taxon_path.Taxon.Entry}}</textarea>  
+                                  }
+                              },
+                              "Description": <textarea name="classification_description_edit" rows="1" cols="10">{{video.Classification.Description}}</textarea>,
+                              "Keywords": <textarea name="classification_keywords_edit" rows="1" cols="10">{{video.Classification.Keywords}}</textarea> 
+                          }
+                     
+
+                    <div class="btn-group">
+                        <a href="javascript:void(0)" onClick="history.go(-1); return false;" class="btn btn-secondary">Cancelar Alteração</a>
+                        <button class="btn btn-success my-2 my-sm-0" type="submit" style="margin-left: 10px;">Salvar Alteração</button> 
+                    </div>
+                    </form>              
+                </pre>
+            </div>
+                <br><br>
+</body>
+</html>
